@@ -69,11 +69,12 @@
         android:paddingHorizontal="20dp"
         android:textColorHint="#535353"/>
     <EditText
-        android:id="@+id/Phone"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Phone"
         android:textColor="#FFFFFF"
+        android:maxLength="10"
         android:inputType="number"
         android:background="@drawable/custom_edit_text"
         android:layout_marginHorizontal="30dp"
@@ -111,10 +112,8 @@
         android:paddingHorizontal="20dp"
         android:textColorHint="#535353"/>
 
-
-
     <Button
-        android:id="@+id/next"
+        android:id="@+id/createAccount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/custom_botton"

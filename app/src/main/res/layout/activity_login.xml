@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:gravity="center"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    tools:context=".Login">
+
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="110dp"
+        android:background="@drawable/login"
+        android:layout_gravity="end"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:fontFamily="@font/abril_fatface"
+        android:text="Hey \nLogin Now."
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="60dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="If you are new/ "
+            android:textColor="#AFAFAF"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/createAccount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Account"
+            android:textStyle="bold"
+            android:textColor="#B4FF00"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+
+
+
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email"
+        android:textColor="#FFFFFF"
+        android:inputType="textEmailAddress"
+        android:background="@drawable/custom_edit_text"
+        android:layout_marginHorizontal="30dp"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="20dp"
+        android:textColorHint="#535353"/>
+
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:inputType="textPassword"
+        android:background="@drawable/custom_edit_text"
+        android:layout_marginHorizontal="30dp"
+        android:paddingVertical="20dp"
+        android:paddingHorizontal="20dp"
+        android:textColorHint="#535353"/>
+
+
+
+    <Button
+        android:id="@+id/next"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/custom_botton"
+        android:text="Login"
+        android:textSize="15dp"
+        android:paddingVertical="20dp"
+        android:textAllCaps="false"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="80dp"/>
+</LinearLayout>

@@ -26,6 +26,16 @@
                 android:layout_marginTop="50dp"
                 android:textSize="40dp"/>
 
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/viewPager2"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="30dp"
+
+                />
+
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

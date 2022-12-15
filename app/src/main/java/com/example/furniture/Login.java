@@ -63,6 +63,8 @@ public class Login extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                login.setEnabled(false);
+
                 String e = email.getText().toString().trim();
                 String p = password.getText().toString().trim();
 
@@ -85,6 +87,8 @@ public class Login extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(Login.this, "Login Success", Toast.LENGTH_SHORT).show();
+                }else {
+                    login.setEnabled(true);
                 }
             }
         });

@@ -1,9 +1,11 @@
 package com.example.furniture.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
@@ -14,9 +16,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
+import com.example.furniture.Models.Bed;
+import com.example.furniture.ProductDetails;
 import com.example.furniture.R;
 import com.example.furniture.SliderAdapter;
 import com.example.furniture.SliderItem;
+import com.example.furniture.ViewHolder.BedViewHolder;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,20 +36,68 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
+    public RecyclerView bedList;
     private ViewPager2 viewPager2;
     private Handler handler = new Handler();
+    private DatabaseReference BedRef;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
         carosoleSettings(view);
+        bedList = view.findViewById(R.id.bedList);
 
+        bedList.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        bedList.setLayoutManager(linearLayoutManager);
 
+        BedRef = FirebaseDatabase.getInstance().getReference().child("Product").child("Bed");
+
+        beds();
 
         return view;
+    }
+
+    private void beds(){
+
+        FirebaseRecyclerOptions<Bed> options = new FirebaseRecyclerOptions.Builder<Bed>()
+                .setQuery(BedRef, Bed.class)
+                .build();
+
+        FirebaseRecyclerAdapter<Bed, BedViewHolder> adapter = new FirebaseRecyclerAdapter<Bed, BedViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull BedViewHolder holder, int position, @NonNull Bed model) {
+                String price = String.valueOf(model.getPrice());
+                holder.itemPrice.setText("₹"+price);
+                holder.itemName.setText(model.getName());
+                Glide.with(holder.itemImage).load(model.getImage()).into(holder.itemImage);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), ProductDetails.class);
+                        intent.putExtra("productID", model.getID());
+                        intent.putExtra("imagePath", model.getImage());
+                        intent.putExtra("category", model.getCategory());
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public BedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent,false);
+                BedViewHolder holder = new BedViewHolder(view);
+                return holder;
+            }
+        };
+        bedList.setAdapter(adapter);
+        adapter.startListening();
     }
 
     private void carosoleSettings(View view) {

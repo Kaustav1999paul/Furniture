@@ -19,18 +19,19 @@
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="#000000"
-            app:title="Chats"
+            app:title="Cart"
             app:titleTextAppearance="@style/Toolbar.TitleText"
             app:titleTextColor="#FFFFFF"
             app:titleMarginTop="50dp"
             app:titleMarginStart="30dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
             android:elevation="0dp"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/itemList"
-        android:visibility="gone"
+        android:id="@+id/cartList"
+        android:visibility="visible"
         android:overScrollMode="never"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
@@ -45,5 +46,30 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"/>
+
     </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/emptyCart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Cart Empty"
+            android:textColor="@color/white"
+            android:paddingTop="100dp"
+            android:visibility="visible"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/proceed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_round_arrow_right_alt_24"
+        app:fabCustomSize="50dp"/>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

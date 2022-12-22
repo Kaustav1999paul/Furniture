@@ -32,9 +32,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="260dp"
                 android:paddingHorizontal="20dp"
-                android:paddingVertical="30dp"
+                android:paddingVertical="30dp" />
 
-                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:paddingHorizontal="30dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/capriola"
+                android:layout_marginTop="40dp"
+                android:text="Beds"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bedList"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="30dp"
+                android:layout_height="wrap_content"/>
 
         </LinearLayout>
     </ScrollView>

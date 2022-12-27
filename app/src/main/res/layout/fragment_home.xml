@@ -49,8 +49,41 @@
                 android:id="@+id/bedList"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="30dp"
-                android:layout_height="wrap_content"/>
+                android:layout_height="250dp"/>
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:paddingHorizontal="30dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/capriola"
+                android:layout_marginTop="40dp"
+                android:text="Sofas"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sofaList"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="30dp"
+                android:layout_height="250dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="25dp"
+                android:paddingHorizontal="30dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/capriola"
+                android:layout_marginTop="40dp"
+                android:text="Tables"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/tableList"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="30dp"
+                android:layout_height="250dp"/>
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>

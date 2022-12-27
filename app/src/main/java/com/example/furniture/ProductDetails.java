@@ -170,12 +170,18 @@ public class ProductDetails extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(cartExist == 0){
-                    String listID = firebaseUser.getUid()+productID;
+
 //                    Add item to Cart
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                    SimpleDateFormat formatter1 = new SimpleDateFormat("dd/MM/yyyy hh:mm:ss");
                     Date date = new Date();
                     String d = formatter.format(date);
-                    Map<String, String> map = new HashMap<String, String>();
+                    String idD = formatter1.format(date);
+                    String listID = firebaseUser.getUid()+productID+ idD;
+
+                    final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
+
+                    Map<String, Object> map = new HashMap<String, Object>();
                     map.put("ID", productID);
                     map.put("Date", d.toString());
                     map.put("image", product.getImage());
@@ -184,31 +190,30 @@ public class ProductDetails extends AppCompatActivity {
                     map.put("Qty", "1");
                     map.put("category", category);
                     map.put("cartID", listID);
+                    map.put("state", "inCart");
 
 
-                    reference.child("Cart").child(listID).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            if (task.isSuccessful()){
-                                itemAddCart.setImageResource(R.drawable.item_added);
-                            }
-                        }
-                    });
-
-                }else{
-//                    Item Already exist, Go to cart Page
-                    reference.child("Cart").orderByChild("ID").equalTo(productID).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            for (DataSnapshot data: snapshot.getChildren()) {
-                                data.getRef().removeValue();
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-
-                        }
-                    });
+                    cartListRef.child("User View")
+                            .child(firebaseUser.getUid())
+                            .child("Products")
+                            .child(productID).updateChildren(map)
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        cartListRef.child("Admin View")
+                                                .child(firebaseUser.getUid()).child("Products")
+                                                .child(productID).updateChildren(map)
+                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                    @Override
+                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                        reference.child("Cart").child(listID).setValue(map);
+                                                        itemAddCart.setImageResource(R.drawable.item_added);
+                                                    }
+                                                });
+                                    }
+                                }
+                            });
                 }
             }
         });

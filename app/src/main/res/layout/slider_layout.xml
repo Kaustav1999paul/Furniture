@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Title"
-            android:textColor="#000000"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:textSize="25dp"/>
         <TextView
@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sub Title"
-            android:textColor="#1B1B1B"
+            android:textColor="#E6E6E6"
             android:textSize="15dp"/>
     </LinearLayout>
 </RelativeLayout>

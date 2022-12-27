@@ -2,13 +2,14 @@ package com.example.furniture.Models;
 
 public class Cart {
 
-    private String ID, image,name, Date, Qty, category,price, cartID;
+    private String ID, image,name, Date, Qty, category,price, cartID, state;
 
     public Cart() {
     }
 
-    public Cart(String ID, String image, String name, String date, String qty, String category, String price, String cartID) {
+    public Cart(String ID, String image, String name, String date, String qty, String category, String price, String cartID, String state) {
         this.ID = ID;
+        this.state = state;
         this.image = image;
         this.name = name;
         Date = date;
@@ -20,6 +21,14 @@ public class Cart {
 
     public String getCartID() {
         return cartID;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public void setCartID(String cartID) {

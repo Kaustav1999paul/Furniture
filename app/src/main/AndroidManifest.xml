@@ -13,6 +13,21 @@
         android:theme="@style/Theme.Furniture"
         tools:targetApi="31">
         <activity
+            android:name=".OrderConfirmedActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ConfirmOrder"
+            android:exported="false"
+            android:screenOrientation="portrait">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".ProductDetails"
             android:exported="false"
             android:screenOrientation="portrait">

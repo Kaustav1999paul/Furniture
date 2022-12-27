@@ -36,10 +36,10 @@ public class HomeFragment extends Fragment {
     public HomeFragment() {
     }
 
-    public RecyclerView bedList;
+    public RecyclerView bedList, sofaList, tableList;
     private ViewPager2 viewPager2;
     private Handler handler = new Handler();
-    private DatabaseReference BedRef;
+    private DatabaseReference Ref;
 
 
     @Override
@@ -48,6 +48,25 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         carosoleSettings(view);
         bedList = view.findViewById(R.id.bedList);
+        sofaList = view.findViewById(R.id.sofaList);
+        tableList = view.findViewById(R.id.tableList);
+
+
+
+
+
+
+
+        Ref = FirebaseDatabase.getInstance().getReference().child("Product");
+
+        beds();
+        sofa();
+        table();
+
+        return view;
+    }
+
+    private void beds(){
 
         bedList.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
@@ -55,17 +74,8 @@ public class HomeFragment extends Fragment {
         linearLayoutManager.setReverseLayout(true);
         bedList.setLayoutManager(linearLayoutManager);
 
-        BedRef = FirebaseDatabase.getInstance().getReference().child("Product").child("Bed");
-
-        beds();
-
-        return view;
-    }
-
-    private void beds(){
-
         FirebaseRecyclerOptions<Bed> options = new FirebaseRecyclerOptions.Builder<Bed>()
-                .setQuery(BedRef, Bed.class)
+                .setQuery(Ref.child("Bed"), Bed.class)
                 .build();
 
         FirebaseRecyclerAdapter<Bed, BedViewHolder> adapter = new FirebaseRecyclerAdapter<Bed, BedViewHolder>(options) {
@@ -100,12 +110,101 @@ public class HomeFragment extends Fragment {
         adapter.startListening();
     }
 
+    private void sofa(){
+
+        sofaList.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        sofaList.setLayoutManager(linearLayoutManager);
+
+        FirebaseRecyclerOptions<Bed> options = new FirebaseRecyclerOptions.Builder<Bed>()
+                .setQuery(Ref.child("Sofa"), Bed.class)
+                .build();
+
+        FirebaseRecyclerAdapter<Bed, BedViewHolder> adapter = new FirebaseRecyclerAdapter<Bed, BedViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull BedViewHolder holder, int position, @NonNull Bed model) {
+                String price = String.valueOf(model.getPrice());
+                holder.itemPrice.setText("₹"+price);
+                holder.itemName.setText(model.getName());
+                Glide.with(holder.itemImage).load(model.getImage()).into(holder.itemImage);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), ProductDetails.class);
+                        intent.putExtra("productID", model.getID());
+                        intent.putExtra("imagePath", model.getImage());
+                        intent.putExtra("category", model.getCategory());
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public BedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent,false);
+                BedViewHolder holder = new BedViewHolder(view);
+                return holder;
+            }
+        };
+        sofaList.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+    private void table(){
+
+        tableList.setHasFixedSize(true);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL,false);
+        linearLayoutManager.setStackFromEnd(true);
+        linearLayoutManager.setReverseLayout(true);
+        tableList.setLayoutManager(linearLayoutManager);
+
+        FirebaseRecyclerOptions<Bed> options = new FirebaseRecyclerOptions.Builder<Bed>()
+                .setQuery(Ref.child("Tables"), Bed.class)
+                .build();
+
+        FirebaseRecyclerAdapter<Bed, BedViewHolder> adapter = new FirebaseRecyclerAdapter<Bed, BedViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(@NonNull BedViewHolder holder, int position, @NonNull Bed model) {
+                String price = String.valueOf(model.getPrice());
+                holder.itemPrice.setText("₹"+price);
+                holder.itemName.setText(model.getName());
+                Glide.with(holder.itemImage).load(model.getImage()).into(holder.itemImage);
+
+                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), ProductDetails.class);
+                        intent.putExtra("productID", model.getID());
+                        intent.putExtra("imagePath", model.getImage());
+                        intent.putExtra("category", model.getCategory());
+                        startActivity(intent);
+                    }
+                });
+            }
+
+            @NonNull
+            @Override
+            public BedViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent,false);
+                BedViewHolder holder = new BedViewHolder(view);
+                return holder;
+            }
+        };
+        tableList.setAdapter(adapter);
+        adapter.startListening();
+    }
+
+
     private void carosoleSettings(View view) {
         viewPager2 = view.findViewById(R.id.viewPager2);
         List<SliderItem> list = new ArrayList<>();
-        list.add(new SliderItem(R.drawable.custom_botton, "30% off", "This diwali get min 30% off"));
-        list.add(new SliderItem(R.drawable.custom_botton, "New Collections", "Get all the new Collections at your home"));
-        list.add(new SliderItem(R.drawable.custom_botton, "Happy New Year", "This year bring new things to your home."));
+        list.add(new SliderItem(R.drawable.banner1, "30% off", "This diwali get min 30% off"));
+        list.add(new SliderItem(R.drawable.banner2, "New Collections", "Get all the new Collections at your home"));
+        list.add(new SliderItem(R.drawable.banner3, "Happy New Year", "This year bring new things to your home."));
 
         viewPager2.setAdapter(new SliderAdapter(list, viewPager2));
         viewPager2.setClipToPadding(false);

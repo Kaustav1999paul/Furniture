@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:background="#000000"
+    android:padding="10dp"
+    android:id="@+id/parent"
+    android:layout_marginBottom="15dp"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="10dp"
+            app:cardCornerRadius="10dp">
+            <ImageView
+                android:id="@+id/itemImage"
+                android:layout_width="match_parent"
+                android:scaleType="centerCrop"
+                android:layout_height="match_parent"/>
+        </androidx.cardview.widget.CardView>
+
+
+        <LinearLayout
+            android:id="@+id/shiftPage"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_weight="1"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/itemName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:text="Item Name"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:id="@+id/itemPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0000"
+                android:textSize="24dp"
+                android:layout_marginTop="5dp"
+                android:textColor="@color/ic_launcher_background"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/noOfItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingHorizontal="10dp"
+            android:textColor="#B8B8B8"
+            android:text="1"/>
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:progressDrawable="@drawable/custom_progress_bar"
+        android:layout_height="10dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:text="Ordered"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:textSize="12dp"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="12dp"
+            android:text="Shipped"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="12dp"
+            android:text="OFD"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:textSize="12dp"
+            android:text="Delivered"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:gravity="end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/returnItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:textSize="12dp"
+            android:text="Return item"/>
+        <Button
+            android:id="@+id/cancelOrder"
+
+            android:textSize="12dp"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Cancel Order"/>
+    </LinearLayout>
+</LinearLayout>

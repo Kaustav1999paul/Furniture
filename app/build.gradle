@@ -43,6 +43,7 @@ dependencies {
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     implementation 'com.firebaseui:firebase-ui-database:+'
     implementation 'com.github.Dimezis:BlurView:version-2.0.3'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.4'

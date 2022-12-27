@@ -69,7 +69,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_margin="20dp"
+        android:visibility="gone"
         android:src="@drawable/ic_round_arrow_right_alt_24"
         app:fabCustomSize="50dp"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

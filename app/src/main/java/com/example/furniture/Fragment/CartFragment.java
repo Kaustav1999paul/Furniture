@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.furniture.Account_Activity;
 import com.example.furniture.Models.Cart;
 import com.example.furniture.OrderConfirmedActivity;
 import com.example.furniture.ProductDetails;
@@ -232,6 +233,37 @@ public class CartFragment extends Fragment {
 
         TextView totalAmount = sheetView.findViewById(R.id.totalAmount);
         totalAmount.setText("Final Amount: "+String.valueOf(finalAmount+150));
+
+        TextView address = sheetView.findViewById(R.id.address);
+
+        userRef = FirebaseDatabase.getInstance().getReference().child("User").child(user.getUid());
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    if (snapshot.hasChild("Address")){
+                        String addresss = snapshot.child("Address").getValue().toString();
+                        address.setText(addresss);
+                    }else {
+                        address.setText("Add your Location");
+                        address.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                startActivity(new Intent(getContext(), Account_Activity.class));
+                            }
+                        });
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         confirmDialog.setContentView(sheetView);
         confirmDialog.show();

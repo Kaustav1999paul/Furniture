@@ -17,10 +17,11 @@ public class CartViewHolder extends RecyclerView.ViewHolder implements View.OnCl
     public ImageView itemImage;
     public TextView itemName, itemPrice, noOfItem;
     public ImageView substract, add;
-    public LinearLayout shiftPage;
+    public LinearLayout shiftPage, count;
 
     public CartViewHolder(@NonNull View itemView) {
         super(itemView);
+        count = itemView.findViewById(R.id.count);
         itemImage = itemView.findViewById(R.id.itemImage);
         itemName = itemView.findViewById(R.id.itemName);
         itemPrice = itemView.findViewById(R.id.itemPrice);

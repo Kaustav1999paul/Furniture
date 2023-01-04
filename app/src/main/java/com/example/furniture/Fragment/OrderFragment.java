@@ -135,7 +135,6 @@ public class OrderFragment extends Fragment {
                             new AlertDialog.Builder(getContext())
                                     .setTitle("Cancel Order")
                                     .setMessage("Are you sure you want to cancel the order?")
-
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
                                             ordersRef.child(model.getID()).removeValue();

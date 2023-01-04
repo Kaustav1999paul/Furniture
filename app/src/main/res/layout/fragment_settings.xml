@@ -86,6 +86,7 @@
                 android:layout_marginBottom="40dp">
 
                 <LinearLayout
+                    android:id="@+id/accounts"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -94,7 +95,7 @@
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:background="@drawable/ic_round_account_circle_24"/>
+                        android:background="@drawable/account"/>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
@@ -104,7 +105,7 @@
                         android:gravity=""
                         android:textSize="17dp"
                         android:textAllCaps="false"
-                        android:text="Account"/>
+                        android:text="My Account"/>
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"
@@ -117,6 +118,7 @@
                     android:layout_marginHorizontal="15dp"
                     android:background="?android:attr/listDivider" />
                 <LinearLayout
+                    android:id="@+id/wishlist"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -135,7 +137,7 @@
                         android:gravity=""
                         android:textSize="17dp"
                         android:textAllCaps="false"
-                        android:text="Credit Score"/>
+                        android:text="My Wishlist"/>
                     <ImageView
                         android:layout_width="30dp"
                         android:layout_height="30dp"

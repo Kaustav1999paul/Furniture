@@ -18,7 +18,7 @@ public class OrderViewHolder extends RecyclerView.ViewHolder{
     public TextView itemName, itemPrice, noOfItem;
     public LinearLayout shiftPage, parent;
     public ProgressBar progressBar;
-    public Button returnItem, cancelOrder;
+    public TextView returnItem, cancelOrder;
 
 
 

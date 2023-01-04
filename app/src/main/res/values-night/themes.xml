@@ -11,10 +11,11 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
     <style name="Home" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#A6FF00</item>
         <item name="android:navigationBarColor">#333333</item>
@@ -24,5 +25,6 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 </resources>

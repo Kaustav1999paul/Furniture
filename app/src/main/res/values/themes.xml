@@ -11,10 +11,11 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
     </style>
 
     <style name="Home" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">#000000</item>
+        <item name="colorPrimary">#FFFFFF</item>
         <item name="colorPrimaryDark">#000000</item>
         <item name="colorAccent">#A6FF00</item>
         <item name="android:navigationBarColor">#333333</item>
@@ -24,6 +25,14 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:windowTranslucentNavigation">false</item>
         <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
+    </style>
+
+    <style name="CustomActivityAnimation" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">

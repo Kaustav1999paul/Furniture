@@ -33,7 +33,7 @@ public class ProductDetails extends AppCompatActivity {
     Intent intent;
     String productID, imagePath, category;
     TextView itemPrice, itemName;
-    DatabaseReference reference;
+    DatabaseReference reference, cartRef;
     FloatingActionButton itemWishList, itemAddCart;
     FirebaseUser firebaseUser;
     int isListed = 0;
@@ -66,6 +66,11 @@ public class ProductDetails extends AppCompatActivity {
 
         DatabaseReference productRef = FirebaseDatabase.getInstance().getReference().child("Product").child(category);
         reference = FirebaseDatabase.getInstance().getReference().child("User").child(firebaseUser.getUid());
+        cartRef = FirebaseDatabase.getInstance().getReference()
+                .child("Cart List")
+                .child("User View")
+                .child(firebaseUser.getUid())
+                .child("Products");
 
         productRef.child(productID).addValueEventListener(new ValueEventListener() {
             @Override
@@ -103,7 +108,7 @@ public class ProductDetails extends AppCompatActivity {
         });
 
 //        Cart Button State Handling
-        reference.child("Cart").orderByChild("ID").equalTo(productID).addValueEventListener(new ValueEventListener() {
+        cartRef.orderByChild("ID").equalTo(productID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()){
@@ -133,10 +138,20 @@ public class ProductDetails extends AppCompatActivity {
                     SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
                     Date date = new Date();
                     String d = formatter.format(date);
-                    Map<String, String> map = new HashMap<String, String>();
+
+                    String listID = firebaseUser.getUid()+productID;
+
+                    Map<String, Object> map = new HashMap<String, Object>();
                     map.put("ID", productID);
                     map.put("Date", d.toString());
-                    String listID = firebaseUser.getUid()+productID;
+                    map.put("image", product.getImage());
+                    map.put("name", product.getName());
+                    map.put("price", String.valueOf(product.getPrice()));
+                    map.put("Qty", "1");
+                    map.put("category", category);
+                    map.put("cartID", listID);
+                    map.put("state", "inCart");
+
 
                     reference.child("Wishlist").child(listID).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override

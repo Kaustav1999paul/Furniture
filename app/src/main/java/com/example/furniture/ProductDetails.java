@@ -32,7 +32,7 @@ public class ProductDetails extends AppCompatActivity {
     ImageView back,itemImage;
     Intent intent;
     String productID, imagePath, category;
-    TextView itemPrice, itemName;
+    TextView itemPrice, itemName, details;
     DatabaseReference reference, cartRef;
     FloatingActionButton itemWishList, itemAddCart;
     FirebaseUser firebaseUser;
@@ -52,6 +52,7 @@ public class ProductDetails extends AppCompatActivity {
         category = intent.getStringExtra("category");
         back = findViewById(R.id.back);
         itemName = findViewById(R.id.itemName);
+        details = findViewById(R.id.details);
         itemAddCart = findViewById(R.id.itemAddCart);
         itemWishList = findViewById(R.id.itemWishList);
         itemPrice = findViewById(R.id.itemPrice);
@@ -79,6 +80,7 @@ public class ProductDetails extends AppCompatActivity {
                     product = snapshot.getValue(Bed.class);
                     itemName.setText(product.getName());
                     itemPrice.setText("₹ "+String.valueOf(product.getPrice()));
+                    details.setText(product.getDescription());
                 }
             }
             @Override

@@ -296,6 +296,7 @@ public class CartFragment extends Fragment {
                     String name = snapshot.child("Name").getValue().toString();
                     String Email = snapshot.child("Email").getValue().toString();
                     String Phone = snapshot.child("PhoneNo").getValue().toString();
+                    String userID = snapshot.child("id").getValue().toString();
 
                     Map<String, Object> map = new HashMap<String, Object>();
                     map.put("Name",name);
@@ -352,6 +353,7 @@ public class CartFragment extends Fragment {
                                                     HashMap<String, Object> om = new HashMap<>();
                                                     om.put("Name",name );
                                                     om.put("phone", Phone);
+                                                    om.put("id", userID);
                                                     om.put("state", randomKey);
                                                     orderRef.updateChildren(om);
                                                     confirmDialog.dismiss();

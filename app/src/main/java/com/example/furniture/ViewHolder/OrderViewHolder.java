@@ -15,8 +15,8 @@ import com.example.furniture.R;
 public class OrderViewHolder extends RecyclerView.ViewHolder{
 
     public ImageView itemImage;
-    public TextView itemName, itemPrice, noOfItem;
-    public LinearLayout shiftPage, parent;
+    public TextView itemName, itemPrice, noOfItem, cancel_state;
+    public LinearLayout shiftPage, parent, ll;
     public ProgressBar progressBar;
     public TextView returnItem, cancelOrder;
 
@@ -25,6 +25,8 @@ public class OrderViewHolder extends RecyclerView.ViewHolder{
     public OrderViewHolder(@NonNull View itemView) {
         super(itemView);
 
+        cancel_state = itemView.findViewById(R.id.cancel_state);
+        ll = itemView.findViewById(R.id.ll);
         parent = itemView.findViewById(R.id.parent);
         returnItem = itemView.findViewById(R.id.returnItem);
         cancelOrder = itemView.findViewById(R.id.cancelOrder);

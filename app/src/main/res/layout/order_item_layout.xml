@@ -75,6 +75,7 @@
         android:layout_height="10dp" />
 
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
@@ -112,6 +113,18 @@
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/cancel_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Order cancelled by "
+        android:textColor="#E1E1E1"
+        android:visibility="gone"
+        android:gravity="center_vertical"
+        android:layout_marginHorizontal="20dp"
+        android:drawablePadding="6dp"
+        android:layout_marginVertical="10dp"
+        android:drawableLeft="@drawable/ic_round_cancel_24"/>
 
     <LinearLayout
         android:layout_width="match_parent"

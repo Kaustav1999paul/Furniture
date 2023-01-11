@@ -53,6 +53,7 @@ public class CartFragment extends Fragment {
     FirebaseUser user;
     FloatingActionButton proceed;
     long finalAmount = 0;
+    int cart_items_size;
     BottomSheetDialog confirmDialog;
 
     public CartFragment() {
@@ -161,6 +162,7 @@ public class CartFragment extends Fragment {
                         map.put("category", model.getCategory());
                         map.put("cartID", model.getCartID());
                         map.put("state", "inCart");
+                        map.put("is_Cancelled", "false");
 
                         reference.child(model.getID()).setValue(map);
                         reference1.child(model.getID()).setValue(map);
@@ -192,6 +194,7 @@ public class CartFragment extends Fragment {
                             map.put("category", model.getCategory());
                             map.put("cartID", model.getCartID());
                             map.put("state", "inCart");
+                            map.put("is_Cancelled", "false");
 
                             reference.child(model.getID()).setValue(map);
                             reference1.child(model.getID()).setValue(map);
@@ -302,9 +305,10 @@ public class CartFragment extends Fragment {
                     map.put("Name",name);
                     map.put("Email",Email);
                     map.put("PhoneNo", Phone);
-                    map.put("state", "not shipped");
+                    map.put("state", "Ordered");
                     map.put("date", date);
                     map.put("time", time);
+                    map.put("is_Cancelled", "false");
                     map.put("address", "3B/5 Sepco");
                     map.put("id", randomKey);
 
@@ -318,21 +322,6 @@ public class CartFragment extends Fragment {
                                             @Override
                                             public void onComplete(@NonNull Task<Void> task) {
                                                 if (task.isSuccessful()){
-//                                                    reference1.addListenerForSingleValueEvent(new ValueEventListener() {
-//                                                        @Override
-//                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                                            for (DataSnapshot sn : snapshot.getChildren()){
-//                                                                sn.child("state")
-//                                                            }
-//                                                        }
-//
-//                                                        @Override
-//                                                        public void onCancelled(@NonNull DatabaseError error) {
-//
-//                                                        }
-//                                                    });
-
-
                                                     ValueEventListener eventListener = new ValueEventListener() {
                                                         @Override
                                                         public void onDataChange(DataSnapshot dataSnapshot) {
@@ -340,6 +329,8 @@ public class CartFragment extends Fragment {
                                                             for(DataSnapshot ds : dataSnapshot.getChildren()) {
                                                                 ds.child("state").getRef().setValue(trueValue);
                                                             }
+
+                                                            Toast.makeText(getContext(), "Count: "+cart_items_size, Toast.LENGTH_SHORT).show();
                                                         }
 
                                                         @Override

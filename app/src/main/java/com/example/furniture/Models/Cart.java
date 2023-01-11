@@ -2,13 +2,14 @@ package com.example.furniture.Models;
 
 public class Cart {
 
-    private String ID, image,name, Date, Qty, category,price, cartID, state;
+    private String ID, image,name, Date, Qty, category,price, cartID, state, is_Cancelled;
 
     public Cart() {
     }
 
-    public Cart(String ID, String image, String name, String date, String qty, String category, String price, String cartID, String state) {
+    public Cart(String ID, String image, String name, String date, String qty, String category, String price, String cartID, String state, String is_Cancelled) {
         this.ID = ID;
+        this.is_Cancelled = is_Cancelled;
         this.state = state;
         this.image = image;
         this.name = name;
@@ -17,6 +18,14 @@ public class Cart {
         this.category = category;
         this.price = price;
         this.cartID = cartID;
+    }
+
+    public String getIs_Cancelled() {
+        return is_Cancelled;
+    }
+
+    public void setIs_Cancelled(String is_Cancelled) {
+        this.is_Cancelled = is_Cancelled;
     }
 
     public String getCartID() {

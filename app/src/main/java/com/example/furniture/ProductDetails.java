@@ -153,6 +153,7 @@ public class ProductDetails extends AppCompatActivity {
                     map.put("category", category);
                     map.put("cartID", listID);
                     map.put("state", "inCart");
+                    map.put("is_Cancelled", "false");
 
 
                     reference.child("Wishlist").child(listID).setValue(map).addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -208,6 +209,7 @@ public class ProductDetails extends AppCompatActivity {
                     map.put("category", category);
                     map.put("cartID", listID);
                     map.put("state", "inCart");
+                    map.put("is_Cancelled", "false");
 
 
                     cartListRef.child("User View")

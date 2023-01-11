@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.furniture.Models.Cart;
@@ -20,6 +21,8 @@ import com.example.furniture.R;
 import com.example.furniture.ViewHolder.OrderViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -28,11 +31,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class OrderFragment extends Fragment {
 
 
     private RecyclerView orderList;
-    private DatabaseReference ordersRef;
+    private DatabaseReference ordersRef, ordRef1;
     FirebaseUser user;
     RelativeLayout loading, emptyCart;
 
@@ -51,6 +56,7 @@ public class OrderFragment extends Fragment {
         loading = view.findViewById(R.id.loading);
         emptyCart = view.findViewById(R.id.emptyCart);
         ordersRef = FirebaseDatabase.getInstance().getReference().child("Cart List").child("Admin View").child(user.getUid()).child("Products");
+        ordRef1 = FirebaseDatabase.getInstance().getReference().child("Orders").child(user.getUid());
 
         orderList.setHasFixedSize(true);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
@@ -91,6 +97,7 @@ public class OrderFragment extends Fragment {
                 String s2 = "Out for Delivery";
                 String s3 = "Delivered";
 
+                String isCancelled = model.getIs_Cancelled();
 
                 loading.setVisibility(View.GONE);
                 orderList.setVisibility(View.VISIBLE);
@@ -127,6 +134,25 @@ public class OrderFragment extends Fragment {
                         holder.cancelOrder.setVisibility(View.GONE);
                     }
 
+                    if (isCancelled.equals("cancelled_by_Admin")){
+//                        Order cancelled by Admin
+                        holder.returnItem.setVisibility(View.GONE);
+                        holder.cancelOrder.setVisibility(View.GONE);
+                        holder.cancel_state.setVisibility(View.VISIBLE);
+                        holder.ll.setVisibility(View.GONE);
+                        holder.cancel_state.setText("Order cancelled by Admin");
+                        holder.progressBar.setVisibility(View.GONE);
+                    }
+                    if (isCancelled.equals("cancelled_by_Me")){
+//                        Order cancelled by Me
+                        holder.returnItem.setVisibility(View.GONE);
+                        holder.cancelOrder.setVisibility(View.GONE);
+                        holder.cancel_state.setVisibility(View.VISIBLE);
+                        holder.cancel_state.setText("You cancelled the order");
+                        holder.ll.setVisibility(View.GONE);
+                        holder.progressBar.setVisibility(View.GONE);
+                    }
+
 
                     holder.cancelOrder.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -137,7 +163,30 @@ public class OrderFragment extends Fragment {
                                     .setMessage("Are you sure you want to cancel the order?")
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int which) {
-                                            ordersRef.child(model.getID()).removeValue();
+                                            HashMap<String, Object> mapa = new HashMap<>();
+                                            mapa.put("is_Cancelled", "cancelled_by_Me");
+                                            ordersRef.child(model.getID()).updateChildren(mapa).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+                                                    Toast.makeText(getContext(), "Order Cancelled", Toast.LENGTH_SHORT).show();
+                                                    ordRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+                                                        @Override
+                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                            if (snapshot.exists()){
+                                                                String order_id = snapshot.child("state").getValue().toString();
+
+                                                                ordRef1.child(order_id).updateChildren(mapa);
+
+                                                            }
+                                                        }
+
+                                                        @Override
+                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                        }
+                                                    });
+                                                }
+                                            });
                                         }
                                     })
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {

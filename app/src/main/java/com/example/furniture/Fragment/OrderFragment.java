@@ -130,7 +130,7 @@ public class OrderFragment extends Fragment {
                     }
                     if (state.equals(s3)){
                         holder.progressBar.setProgress(100);
-                        holder.returnItem.setVisibility(View.VISIBLE);
+                        holder.returnItem.setVisibility(View.GONE);
                         holder.cancelOrder.setVisibility(View.GONE);
                     }
 

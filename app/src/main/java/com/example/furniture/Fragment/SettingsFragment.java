@@ -1,5 +1,6 @@
 package com.example.furniture.Fragment;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -18,6 +19,7 @@ import com.example.furniture.HomeActivity;
 import com.example.furniture.Login;
 import com.example.furniture.R;
 import com.example.furniture.WishList_Activity;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -29,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SettingsFragment extends Fragment {
 
 
-    LinearLayout logout;
+    FloatingActionButton logout;
     FirebaseAuth mAuth;
     TextView nameI;
     DatabaseReference userRef;

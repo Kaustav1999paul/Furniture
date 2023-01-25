@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_corner"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/contact" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textColor="@color/white"
+        android:textSize="25dp"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/capriola"
+        android:text="Contact Us"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="30dp"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/round_call_24"
+        android:drawablePadding="20dp"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/capriola"
+        android:text="+91 6204743570"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/round_mail_24"
+        android:drawablePadding="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/capriola"
+        android:text="support.furnish@gmail.com"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:layout_marginBottom="50dp"
+        android:drawableLeft="@drawable/round_location_on_24"
+        android:drawablePadding="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/capriola"
+        android:text="34/6 Sakshi, Jamshedpur"/>
+
+
+
+
+</LinearLayout>

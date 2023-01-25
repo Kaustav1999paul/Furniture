@@ -19,6 +19,7 @@ import com.example.furniture.HomeActivity;
 import com.example.furniture.Login;
 import com.example.furniture.R;
 import com.example.furniture.WishList_Activity;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -37,6 +38,7 @@ public class SettingsFragment extends Fragment {
     DatabaseReference userRef;
     FirebaseUser user;
     LinearLayout accounts;
+    BottomSheetDialog confirmDialog;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -90,8 +92,20 @@ public class SettingsFragment extends Fragment {
             }
         });
 
-
+        v.findViewById(R.id.contactUs).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showDialog();
+            }
+        });
 
         return v;
+    }
+
+    private void showDialog() {
+        View sheetView = getActivity().getLayoutInflater().inflate(R.layout.contact_us_layout, null);
+        confirmDialog = new BottomSheetDialog(getContext());
+        confirmDialog.setContentView(sheetView);
+        confirmDialog.show();
     }
 }
